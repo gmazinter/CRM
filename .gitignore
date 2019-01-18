@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#starter data - connected to other remote repo
+/react-crm-starter
