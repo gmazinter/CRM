@@ -5,9 +5,9 @@ class ClientChoice extends Component {
         return (
             <div id="client-div">
                 Client: 
-                <input list="clients" /> 
+                <input list="clients" />
                 <datalist id="clients">
-                    {/* {this.props.options.map(o => )} */}
+                    {this.props.clients.map(c => <option key={c._id} value={c.name}>{c.name}</option>)}
                 </datalist>
             </div>
         )

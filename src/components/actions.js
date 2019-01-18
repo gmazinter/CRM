@@ -16,10 +16,37 @@ class Actions extends Component {
                 emailType: '',
                 sold: false,
                 owner: ''
+            },
+            clients: [],
+            owners: []
             }
         }
+        
+    componentDidMount() {
+        this.getData()
+            
     }
 
+    getData = () => {
+        axios.get('http://localhost:8000/clients-actions')
+            .then((clients) => {this.setState({clients: clients.data}, () => {
+                this.createOwnerList(this.state.clients)
+            })})
+    }
+
+    //UPDATE CLIENT METHODS
+    createOwnerList = (clients) => {
+        let tempObj = {}
+        clients.forEach(c => {
+            if (!tempObj[c.owner]) {
+                tempObj[c.owner] = true
+            }
+        })
+        // console.log(tempObj) 
+        this.setState({owners: Object.keys(tempObj)})
+    }
+
+    //CREATE CLIENT METHODS
     changeInput = (name, value) => {
         const tempClient = {...this.state.client}
         tempClient[name] = value
@@ -45,7 +72,7 @@ class Actions extends Component {
     render() {
         return (
             <div>
-                <Update />
+                <Update clients={this.state.clients} owners={this.state.owners} />
                 <br />
                 <Create client={this.state.client} changeInput={this.changeInput} createClient={this.createClient} />
             </div>

@@ -15,7 +15,14 @@ app.use(function (req, res, next) {
     next()
   })
 
-//ROUTES:
+//ACTIONS COMPONENT ROUTES:
+app.get(`/clients-actions`, function(req, res) {
+    Client.find({}, 'id name owner', function(err, data) {
+        res.send(data)
+    })
+})
+
+//CLIENTS COMPONENT ROUTES:
 app.get('/clients', function(req, res) {
     Client.find({}, function(err, data) {
         res.send(data)
@@ -38,14 +45,14 @@ app.post('/clients', function(req, res) {
     res.end()
 })
 
-app.get('/clients/:clientID', function(req, res) {
-    let cID = req.params.clientID
-    Client.findById(cID, function(err, client) {
-        console.log('OK')
-        console.log(cID)
-        res.send(client)
-    })
-})
+// app.get('/clients/:clientID', function(req, res) {
+//     let cID = req.params.clientID
+//     Client.findById(cID, function(err, client) {
+//         console.log('OK')
+//         console.log(cID)
+//         res.send(client)
+//     })
+// })
 
 app.put('/clients/:clientID', function(req, res) {
     let cID = req.params.clientID
