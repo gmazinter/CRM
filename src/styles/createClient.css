@@ -1,0 +1,43 @@
+#create-container {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-areas:
+        "cr cr"
+        "n ni"
+        "s si"
+        "c ci"
+        "o oi"
+        "b b";
+}
+
+#create-div {
+    grid-area: cr;
+}
+#name-div {
+    grid-area: n;
+}
+#name-inpt {
+    grid-area: ni;
+}
+#surname-div {
+    grid-area: s;
+}
+#surname-inpt {
+    grid-area: si;  
+}
+#country-div {
+    grid-area: c;
+}
+#country-inpt {
+    grid-area: ci;
+}
+#owner-div {
+    grid-area: o;
+}
+#owner-inpt {
+    grid-area: oi;
+}
+#create-btn {
+    grid-area: b;
+}

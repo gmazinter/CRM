@@ -1,0 +1,68 @@
+#editor-window {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: 
+    "x x"
+    "n ni"
+    "sn sni"
+    "c ci"
+    "ub ub";
+    background-color: rgba(11, 14, 26, 0.904);
+    color: white;
+    width: 40vw;
+    height: 40vh;
+    align-items: center;
+    border-radius: 3px;
+    padding: 3px;
+    position: fixed;
+    left: 30vw;
+    top:30vh;
+}
+
+#editor-window>input {
+    background-color: transparent;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: white;
+    color: white;
+    
+}
+#editor-window>input:focus {
+    outline: none;
+}
+
+#exit-btn{
+    cursor: pointer;
+    display: grid;
+    align-self: start;
+    justify-self: start;
+    grid-area: x;
+    border: 1px solid white;
+}
+#name-div {
+    grid-area: n;
+}
+#name-inpt {
+    grid-area: ni;
+}
+#sname-div {
+    grid-area: sn;
+}
+#sname-inpt {
+    grid-area: sni;
+}
+#country-div {
+    grid-area: c;
+}
+#country-inpt {
+    grid-area: ci;
+}
+#update-btn {
+    display: grid;
+    align-self: end;
+    justify-content: center;
+    grid-area: ub;
+    border: 1px solid white;
+    cursor: pointer;
+}

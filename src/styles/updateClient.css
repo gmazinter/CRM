@@ -1,0 +1,42 @@
+#update-container {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+    grid-template-rows: repeat(5, 3fr);
+    grid-template-areas: 
+        "u u u"
+        "c c x"
+        "t os tb"
+        "e es eb"
+        "d d db";
+}
+
+#update-div {
+    grid-area: u;
+}
+#client-div {
+    grid-area: c;
+}
+#transfer-div {
+    grid-area: t;
+}
+#owner-select {
+    grid-area: os;
+}
+#trans-btn {
+    grid-area: tb;
+}
+#send-div {
+    grid-area: e;
+}
+#email-select {
+    grid-area: es;
+}
+#send-btn {
+    grid-area: eb;
+}
+#declare-div {
+    grid-area: d;
+}
+#declare-btn {
+    grid-area: db;
+}
