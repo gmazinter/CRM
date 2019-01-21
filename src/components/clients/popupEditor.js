@@ -19,9 +19,9 @@ class Editor extends Component {
         this.props.closeEditor()
     }
 
-    querySingleEntry = () => {
-        this.props.querySingleEntry(this.state.editor._id)
-    }
+    // querySingleEntry = () => {
+    //     this.props.querySingleEntry(this.state.editor._id)
+    // }
 
     updateEditorVals = (event) => {
         const tempEditor = {...this.state.editor}
@@ -31,13 +31,18 @@ class Editor extends Component {
 
     persistEditorData = () => {
         const name = this.state.editor.name + ' ' + this.state.editor.surname
-        axios.put(`http://localhost:8000/clients/${this.state.editor._id}`,
-            {name: name, country: this.state.editor.country})
+        // axios.put(`http://localhost:8000/clients/${this.state.editor._id}`,
+        //     {name: name, country: this.state.editor.country})
+        let toSend = {
+            name: name,
+            country: this.state.editor.country
+        }
+        console.log(toSend)
     }
 
     updateEditor = () => {
         this.persistEditorData()
-        this.querySingleEntry()
+        // this.querySingleEntry()
         this.closeEditor()
     }
 

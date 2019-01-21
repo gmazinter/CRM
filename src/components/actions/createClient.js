@@ -3,8 +3,8 @@ import '../../styles/createClient.css'
 
 class Create extends Component {
 
-    changeInput = (event) => {
-        this.props.changeInput(event.target.name, event.target.value)
+    updateVal = (event) => {
+        this.props.updateVal(event.target.name, event.target.value, "newClient")
     }
 
     createClient = () => {
@@ -19,10 +19,10 @@ class Create extends Component {
                 <div id="surname-div">Surname:</div>
                 <div id="country-div">Country:</div>
                 <div id="owner-div">Owner:</div>
-                <input name="name" id="name-inpt" placeholder="name" value={this.props.client.name} onChange={this.changeInput} />
-                <input name="surname" id="surname-inpt" placeholder="surname" value={this.props.client.surname} onChange={this.changeInput} />
-                <input name="country" id="country-inpt" placeholder="country" value={this.props.client.country} onChange={this.changeInput} />
-                <input name="owner" id="owner-inpt" placeholder="owner" value={this.props.client.owner} onChange={this.changeInput} />
+                <input name="name" id="name-inpt" placeholder="name" value={this.props.newClient.name} onChange={this.updateVal} />
+                <input name="surname" id="surname-inpt" placeholder="surname" value={this.props.newClient.surname} onChange={this.updateVal} />
+                <input name="country" id="country-inpt" placeholder="country" value={this.props.newClient.country} onChange={this.updateVal} />
+                <input name="owner" id="owner-inpt" placeholder="owner" value={this.props.newClient.owner} onChange={this.updateVal} />
                 <button id="create-btn" onClick={this.createClient}>CREATE</button>
             </div>
         )

@@ -9,13 +9,15 @@ class Actions extends Component {
         this.state = {
             client: {
                 name: '',
-                surname: '',
-                country: '',
-                firstContact: '',
-                email: '',
                 emailType: '',
                 sold: false,
                 owner: ''
+            },
+            newClient: {
+                name: '',
+                surname: '',
+                country: '',
+                owner:''
             },
             clients: [],
             owners: []
@@ -23,18 +25,20 @@ class Actions extends Component {
         }
         
     componentDidMount() {
-        this.getData()
-            
+        // this.getData()
+        let data = require('../data.json')
+        this.setState({clients: data}, function () {
+            this.createOwnerList(this.state.clients)
+        })
     }
 
     getData = () => {
         axios.get('http://localhost:8000/clients-actions')
             .then((clients) => {this.setState({clients: clients.data}, () => {
                 this.createOwnerList(this.state.clients)
-            })})
+            })})       
     }
 
-    //UPDATE CLIENT METHODS
     createOwnerList = (clients) => {
         let tempObj = {}
         clients.forEach(c => {
@@ -46,38 +50,56 @@ class Actions extends Component {
         this.setState({owners: Object.keys(tempObj)})
     }
 
-    //CREATE CLIENT METHODS
-    changeInput = (name, value) => {
-        const tempClient = {...this.state.client}
+    updateVal = (name, value, keyToUpdate) => {
+        const tempClient = {...this.state[keyToUpdate]}
         tempClient[name] = value
-        this.setState({client: tempClient}, function() {
-            console.log(this.state.client)
+        this.setState({
+            [keyToUpdate]: tempClient
+        }, function() {
+            console.log(this.state[keyToUpdate])
         })
     }
 
+    executeUpdate = (property) => {
+        let temp = this.state.clients.find(c => c.name === this.state.client.name)
+        if (temp) {
+            let toSend = {
+                _id :temp._id,
+                [property]: this.state.client[property] 
+            }
+            console.log(toSend)
+        } else {
+            console.log('the client does not exist')
+        }
+    }
+
     createClient = () => {
-        const toSend = {
-            name: this.state.client.name,
-            surname: this.state.client.surname,
-            country: this.state.client.country,
-            owner: this.state.client.owner,
-            firstContact: null,
+        const name = this.state.newClient.name + ' ' + this.state.newClient.surname
+        const toCreate = {
+            name: name,
+            country: this.state.newClient.country,
+            owner: this.state.newClient.owner,
+            firstContact: new Date(),
             email: null,
             emailType: null,
-            sold: null
+            sold: false
         }
-        axios.post(`http://localhost:8000/clients`, toSend)
+        // axios.post(`http://localhost:8000/clients`, toCreate)
+        console.log(toCreate)
     }
 
     render() {
         return (
             <div>
-                <Update clients={this.state.clients} owners={this.state.owners} />
+                <Update clients={this.state.clients} owners={this.state.owners}
+                updateVal={this.updateVal}
+                executeUpdate={this.executeUpdate} name={this.state.client.name}
+                emailType={this.state.client.emailType} owner={this.state.client.owner} />
                 <br />
-                <Create client={this.state.client} changeInput={this.changeInput} createClient={this.createClient} />
+                <Create newClient={this.state.newClient} updateVal={this.updateVal} createClient={this.createClient} />
             </div>
         )
     }
 }
 
-export default Actions
+export default Actions;

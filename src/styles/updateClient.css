@@ -1,16 +1,24 @@
 #update-container {
     display: grid;
-    grid-template-columns: 3fr 3fr 3fr;
+    /* grid-template-columns: 3fr 3fr 3fr; */
     grid-template-rows: repeat(5, 3fr);
-    grid-template-areas: 
+    gap: 5px;
+    /* grid-template-areas: 
         "u u u"
         "c c x"
         "t os tb"
         "e es eb"
-        "d d db";
+        "d d db"; */
 }
 
-#update-div {
+#update-container>div {
+    /* border: 1px solid black; */
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    /* justify-items: center; */
+}
+
+/* #update-div {
     grid-area: u;
 }
 #client-div {
@@ -39,4 +47,4 @@
 }
 #declare-btn {
     grid-area: db;
-}
+} */

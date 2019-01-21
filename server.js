@@ -22,6 +22,11 @@ app.get(`/clients-actions`, function(req, res) {
     })
 })
 
+app.put(`/updateclient/:_id`, function(req, res) {
+    const temp = req.body
+    Client.findByIdAndUpdate(req.params._id, temp, {new: true}, function(err, data){res.send(data)})
+})
+
 //CLIENTS COMPONENT ROUTES:
 app.get('/clients', function(req, res) {
     Client.find({}, function(err, data) {

@@ -19,7 +19,11 @@ class Clients extends Component {
     }
 
     componentDidMount() {
-        this.fetchData()
+        // this.fetchData()
+        let data = require('../data.json')
+        this.setState({
+            clients: data
+        }, function() {console.log(this.state.clients)})
       }
       
     fetchData = () => {
@@ -46,13 +50,13 @@ class Clients extends Component {
         this.setState({editor: tempEditor})
     }
 
-    querySingleEntry = (id) => {
-        console.log(id)
-        axios.get(`http://localhost:8000/clients/${id}`)
-            .then(function(response) {
-                console.log(response)
-            })
-    }
+    // querySingleEntry = (id) => {
+    //     console.log(id)
+    //     axios.get(`http://localhost:8000/clients/${id}`)
+    //         .then(function(response) {
+    //             console.log(response)
+    //         })
+    // }
 
     render() {
         return (
